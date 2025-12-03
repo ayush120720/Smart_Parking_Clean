@@ -1,15 +1,27 @@
-# Use official Java 17 JDK image
-FROM eclipse-temurin:17-jdk-jammy
-
-# Set work directory
+# ---- Build Stage ----
+FROM eclipse-temurin:17-jdk-jammy AS build
 WORKDIR /app
 
-# Copy build jar from Maven target folder
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+# Copy Maven wrapper and project files
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+RUN ./mvnw dependency:go-offline
 
-# Expose Render port
+# Copy source code
+COPY src src
+
+# Build the application
+RUN ./mvnw -B package -DskipTests
+
+# ---- Run Stage ----
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+
+# Copy the jar from the build stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose port (Render injects $PORT)
 EXPOSE 8080
 
-# Run the Spring Boot app
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
