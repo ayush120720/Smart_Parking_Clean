@@ -1,46 +1,41 @@
 package com.example.Smart_Parking.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import com.sendinblue.*;
+import sibApi.TransactionalEmailsApi;
+import sibModel.*;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
-
     public void sendVerificationEmail(String toEmail, String token) {
 
-        // Get deployed domain from Railway variables
-        String domain = System.getenv("APP_DOMAIN");
-        if (domain == null || domain.isEmpty()) {
-            domain = "localhost:8080"; // fallback (local)
-        }
-
-        String verifyUrl =
-                "https://" + domain + "/verify-email-submit?email=" + toEmail + "&token=" + token;
-
-        String subject = "Smart Parking - Verify Your Email";
-
-        String text = "Your verification code is: " + token +
-                "\n\nClick to verify (recommended):\n" + verifyUrl +
-                "\n\nThis code expires in 10 minutes.";
-
         try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(toEmail);
-            message.setSubject(subject);
-            message.setText(text);
+            String domain = System.getenv("APP_DOMAIN");
+            String verifyUrl = "https://" + domain + "/verify-email-submit?email="
+                    + toEmail + "&token=" + token;
 
-            mailSender.send(message);
+            ApiClient client = new ApiClient();
+            client.setApiKey(System.getenv("BREVO_API_KEY"));
+            TransactionalEmailsApi api = new TransactionalEmailsApi(client);
 
-            System.out.println("Verification email sent to " + toEmail);
+            SendSmtpEmail email = new SendSmtpEmail()
+                    .subject("Smart Parking - Verify Email")
+                    .sender(new SendSmtpEmailSender().email("noreply@smartparking.com"))
+                    .to(Collections.singletonList(new SendSmtpEmailTo().email(toEmail)))
+                    .htmlContent("<p>Your verification code is: <b>" + token + "</b></p>"
+                            + "<p>Click below to verify:</p>"
+                            + "<a href='" + verifyUrl + "'>Verify Email</a>");
+
+            api.sendTransacEmail(email);
+
+            System.out.println("Verification Email Sent via Brevo!");
 
         } catch (Exception e) {
-            System.out.println("EMAIL ERROR: " + e.getMessage());
-            throw new RuntimeException("Failed to send verification email", e);
+            e.printStackTrace();
+            throw new RuntimeException("Email sending failed: " + e.getMessage());
         }
     }
 }

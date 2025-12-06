@@ -80,6 +80,13 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+
+		<dependency>
+			<groupId>com.sendinblue</groupId>
+			<artifactId>sib-api-v3-sdk</artifactId>
+			<version>7.0.0</version>
+		</dependency>
+
 		<!-- Spring Data JPA for @Entity, @Table, etc. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
