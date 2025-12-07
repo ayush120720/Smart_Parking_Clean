@@ -35,36 +35,38 @@ public class RegisterController {
     public String registerSubmit(@ModelAttribute("userForm") @Valid User userForm,
                                  BindingResult br,
                                  Model model) {
-        System.out.println("SPRING_MAIL_USERNAME = " + System.getenv("SPRING_MAIL_USERNAME"));
-        System.out.println("SPRING_MAIL_PASSWORD = " + System.getenv("SPRING_MAIL_PASSWORD"));
 
+        // DEBUG (masked) - remove for production
+        String debugUser = System.getenv("SPRING_MAIL_USERNAME");
+        boolean pwLoaded = System.getenv("SPRING_MAIL_PASSWORD") != null;
+        System.out.println("DEBUG SPRING_MAIL_USERNAME = " + (debugUser == null ? "NULL" : debugUser));
+        System.out.println("DEBUG SPRING_MAIL_PASSWORD = " + (pwLoaded ? "LOADED" : "NULL"));
 
         if (br.hasErrors()) {
             return "Register";
         }
 
         boolean registered = userService.register(userForm);
-
         if (!registered) {
             model.addAttribute("error", "Email already exists.");
             return "Register";
         }
 
-        // Generate OTP
         String token = verificationService.generateToken(userForm.getEmail());
 
-        // Send OTP via SMTP
         try {
             emailService.sendVerificationEmail(userForm.getEmail(), token);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            model.addAttribute("error", "Failed to send email via SMTP: " + ex.getMessage());
-            return "Register";
+            ex.printStackTrace(); // keep for now; you can log with logger
+            model.addAttribute("error", "Failed to send verification email. Please try resending.");
+            model.addAttribute("email", userForm.getEmail());
+            return "VerifyEmail"; // show verify UI with resend option
         }
 
         model.addAttribute("email", userForm.getEmail());
         return "VerifyEmail";
     }
+
 
 
     @PostMapping("/verify-email-submit")
