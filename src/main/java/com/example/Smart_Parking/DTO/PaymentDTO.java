@@ -1,64 +1,26 @@
 package com.example.Smart_Parking.DTO;
 
-import com.example.Smart_Parking.Model.PaymentMethod;
-
 public class PaymentDTO {
-
     private Long userId;
     private Long reserveId;
     private Double amount;
-    private String method;
+    private String method;            // <- IMPORTANT: String, not enum
     private String upiTransactionId;
 
-    // Constructors
     public PaymentDTO() {}
 
-    public PaymentDTO(Long userId, Long reserveId, Double amount, String method, String upiTransactionId) {
-        this.userId = userId;
-        this.reserveId = reserveId;
-        this.amount = amount;
-        this.method = method;
-        this.upiTransactionId = upiTransactionId;
-    }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
-    // Getters and Setters
-    public Long getUserId() {
-        return userId;
-    }
+    public Long getReserveId() { return reserveId; }
+    public void setReserveId(Long reserveId) { this.reserveId = reserveId; }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    public Double getAmount() { return amount; }
+    public void setAmount(Double amount) { this.amount = amount; }
 
-    public Long getReserveId() {
-        return reserveId;
-    }
+    public String getMethod() { return method; }
+    public void setMethod(String method) { this.method = method; }
 
-    public void setReserveId(Long reserveId) {
-        this.reserveId = reserveId;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = String.valueOf(method);
-    }
-
-    public String getUpiTransactionId() {
-        return upiTransactionId;
-    }
-
-    public void setUpiTransactionId(String upiTransactionId) {
-        this.upiTransactionId = upiTransactionId;
-    }
+    public String getUpiTransactionId() { return upiTransactionId; }
+    public void setUpiTransactionId(String upiTransactionId) { this.upiTransactionId = upiTransactionId; }
 }
