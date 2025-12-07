@@ -132,7 +132,7 @@ public class PaymentController {
 
         Payment saved = paymentRepo.save(payment);
 
-        return "redirect:https://smartparkingclean-production.up.railway.app/Payment/success" + saved.getPayment_id();
+        return "redirect:/Payment/success/" + saved.getPayment_id();
     }
 
 }
