@@ -14,18 +14,22 @@ public class EmailService {
     }
 
     public void sendVerificationEmail(String toEmail, String otp) {
-        System.out.println("SMTP DEBUG USERNAME = " + System.getenv("SPRING_MAIL_USERNAME"));
-        System.out.println("SMTP DEBUG PASSWORD = " +
-                (System.getenv("SPRING_MAIL_PASSWORD") != null ? "LOADED" : "NULL"));
 
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(toEmail);
-        msg.setSubject("Smart Parking Verification Code");
-        msg.setText("Your OTP is: " + otp + "\nThis code is valid for 10 minutes.");
+            // Debug: Check if Spring Boot loaded SMTP credentials
+            String u1 = System.getenv("SPRING_MAIL_USERNAME");
+            String p1 = System.getenv("SPRING_MAIL_PASSWORD");
 
-        mailSender.send(msg);
+            System.out.println("DEBUG SMTP ENV USERNAME = " + u1);
+            System.out.println("DEBUG SMTP ENV PASSWORD = " + (p1 != null ? "LOADED" : "NULL"));
+
+            String s1 = System.getProperty("spring.mail.username");
+            String s2 = System.getProperty("spring.mail.password");
+
+            System.out.println("DEBUG SMTP SYS-PROP USERNAME = " + s1);
+            System.out.println("DEBUG SMTP SYS-PROP PASSWORD = " + (s2 != null ? "LOADED" : "NULL"));
+
+            // Temporary disable email sending to avoid crash
+            System.out.println("SMTP test — Email sending disabled");
+
     }
-
-
-
 }
