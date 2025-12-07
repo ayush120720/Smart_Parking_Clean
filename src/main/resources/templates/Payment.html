@@ -59,24 +59,11 @@
         <label>Payment Method:</label>
         <select th:field="*{method}" id="method" onchange="togglePaymentFields()" required>
             <option value="" disabled selected>Select Payment Method</option>
-            <option value="UPI">UPI</option>
             <option value="CARD">Card</option>
             <option value="CASH">Cash</option>
         </select>
         <div th:if="${#fields.hasErrors('method')}" th:errors="*{method}" class="error"></div>
 
-        <!-- UPI Transaction ID -->
-        <div id="upiField" style="display:none;">
-            <label>UPI Transaction ID:</label>
-            <input type="text" th:field="*{upiTransactionId}" placeholder="Your UPI Txn ID" />
-            <div th:if="${#fields.hasErrors('upiTransactionId')}" th:errors="*{upiTransactionId}" class="error"></div>
-        </div>
-
-        <!-- Card Number -->
-        <div id="cardField" style="display:none;">
-            <label>Card Number:</label>
-            <input type="text" name="cardNumber" id="cardNumber" maxlength="16" placeholder="Enter 16‑digit card no." />
-        </div>
 
         <button type="submit">Pay</button>
     </form>
@@ -85,7 +72,6 @@
 <script>
     function togglePaymentFields() {
       const method = document.getElementById("method").value;
-      document.getElementById("upiField").style.display  = method === 'UPI'  ? 'block' : 'none';
       document.getElementById("cardField").style.display = method === 'CARD'? 'block' : 'none';
     }
     document.addEventListener("DOMContentLoaded", togglePaymentFields);

@@ -99,7 +99,7 @@ public class PaymentController {
 
         // Offline payments (UPI or CASH)
         if ("UPI".equals(methodStr) || "CASH".equals(methodStr)) {
-            return saveOfflinePayment(dto, methodStr.equals("UPI") ? PaymentMethod.UPI : PaymentMethod.CASH);
+            return saveOfflinePayment(dto, PaymentMethod.CASH);
         }
 
         // CARD => Stripe Checkout
@@ -215,9 +215,6 @@ public class PaymentController {
         payment.setStatus(PaymentStatus.SUCCESS);
         payment.setPaymentDate(LocalDateTime.now());
 
-        if (method == PaymentMethod.UPI) {
-            payment.setUpiTransactionId(dto.getUpiTransactionId());
-        }
 
         Payment saved = paymentRepo.save(payment);
         return "redirect:/Payment/success/" + saved.getPayment_id();
