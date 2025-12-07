@@ -14,6 +14,11 @@ public class EmailService {
     }
 
     public void sendVerificationEmail(String toEmail, String otp) {
+        System.out.println("SMTP test — Email sending disabled");
+    }
+
+
+  /*  public void sendVerificationEmail(String toEmail, String otp) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(toEmail);
@@ -23,5 +28,5 @@ public class EmailService {
         mailSender.send(msg);
 
         System.out.println("SMTP EMAIL SENT TO: " + toEmail);
-    }
+    }*/
 }
