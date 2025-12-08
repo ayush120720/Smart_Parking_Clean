@@ -141,15 +141,15 @@
         </div>
 
         <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" type="password" th:field="*{password}" placeholder="Enter password" required />
-            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
-        </div>
-
-        <div class="form-group">
             <label for="email">Email</label>
             <input id="email" type="email" th:field="*{email}" placeholder="you@example.com" required />
             <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" th:field="*{password}" placeholder="Enter password" required />
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
         </div>
 
         <div class="form-group">

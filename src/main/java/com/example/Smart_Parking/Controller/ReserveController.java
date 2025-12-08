@@ -89,10 +89,7 @@ public class ReserveController {
     public String finalizeReservation(@RequestParam int slotId,
                                       @RequestParam String vehicleNumber,
                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-
-                                      // FIX #2 — Ensure finalize also understands HH:mm:ss
-                                      @RequestParam @DateTimeFormat(pattern = "HH:mm:ss") LocalTime startTime,
-
+                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
                                       @RequestParam int durationHours,
                                       HttpSession session,
                                       RedirectAttributes redirectAttrs) {
