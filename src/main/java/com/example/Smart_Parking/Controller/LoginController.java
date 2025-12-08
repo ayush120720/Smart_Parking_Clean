@@ -27,7 +27,7 @@ public class LoginController {
         return "Userlogin";   // Your login page name
     }
 
-    @PostMapping("/login")
+    @PostMapping("/Userlogin")
     public String loginSubmit(@RequestParam String username,
                               @RequestParam String password,
                               HttpSession session) {

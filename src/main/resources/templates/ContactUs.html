@@ -1,0 +1,259 @@
+<!-- Save as Contact.html in src/main/resources/templates/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Contact Us — ParkSmart</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <style>
+        [data-cloak]{display:none!important;}
+    </style>
+</head>
+<body class="bg-[#1a1a1a] text-white font-[Manrope] min-h-screen flex flex-col">
+
+<!-- Header (keeps same look as other pages; Contact link uses /contact) -->
+<header class="w-full bg-transparent top-20 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a href="/" class="flex items-center gap-3">
+                <img src="/images/logo.png" alt="ParkSmart Logo" class="w-10 h-10 object-contain rounded" />
+                <span class="text-lg font-bold leading-none">Smart Parking</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm text-[#d1d5db]">
+                <a href="#" class="hover:text-white transition">Home</a>
+                <a href="#" class="hover:text-white transition">Features</a>
+                <a href="/contact" class="hover:text-white transition">Contact Us</a>
+            </nav>
+
+            <!-- Right side (profile + mobile toggle) -->
+            <div class="flex items-center gap-3">
+                <!-- Profile button (small on mobile) -->
+                <a href="/profile" class="hidden sm:inline-flex w-10 h-10 rounded-full bg-white items-center justify-center text-[#1a1a1a] font-bold hover:scale-105 transition" aria-label="Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5
+                     19.5a8.25 8.25 0 1115 0v.75H4.5v-.75z" />
+                    </svg>
+                </a>
+
+                <!-- Mobile profile (icon inside mobile menu for small screens) -->
+                <button id="mobileToggle" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-[#d1d5db] hover:bg-white/5 focus:outline-none" aria-expanded="false" aria-controls="mobileMenu">
+                    <svg id="hamburger" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+                    </svg>
+                    <svg id="close" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu (collapsible) -->
+    <div id="mobileMenu" class="md:hidden bg-[#111111] border-t border-[#222]" data-cloak>
+        <div class="px-4 pt-3 pb-4 space-y-2">
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#d1d5db] hover:text-white hover:bg-white/5">Home</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-[#d1d5db] hover:text-white hover:bg-white/5">Features</a>
+            <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-[#d1d5db] hover:text-white hover:bg-white/5">Contact</a>
+
+            <div class="pt-3 border-t border-[#222]">
+                <a href="/profile" class="block w-full text-center px-3 py-2 rounded-md bg-white text-[#1a1a1a] font-semibold">Profile</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Page hero / title to match your theme -->
+<main class="flex-1">
+    <section class="px-4 lg:px-20 py-12 max-w-[1200px] mx-auto">
+        <h1 class="text-4xl sm:text-5xl font-extrabold mb-2">Contact Us</h1>
+        <p class="text-[#cfcfcf] mb-8">Have a question, suggestion or need help? Drop us a message and we'll get back to you soon.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left: Contact details card (keeps theme colors) -->
+            <div class="rounded-xl p-6 sm:p-8 bg-gradient-to-br from-[#171717] to-[#0f0f0f] border border-[#272727] shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">Get in touch</h2>
+                <p class="text-[#cfcfcf] mb-6">Prefer email? Use the form. Want to call? See our contact details below.</p>
+
+                <div class="space-y-4 text-sm text-[#d1d5db]">
+                    <div>
+                        <div class="text-[#9aa4b2]">Email</div>
+                        <div class="font-semibold">support@parksmart.example</div>
+                    </div>
+                    <div>
+                        <div class="text-[#9aa4b2]">Phone</div>
+                        <div class="font-semibold">+91 98765 43210</div>
+                    </div>
+                    <div>
+                        <div class="text-[#9aa4b2]">Address</div>
+                        <div class="font-semibold">ParkSmart HQ, Gujarat, India</div>
+                    </div>
+                    <div>
+                        <div class="text-[#9aa4b2]">Business hours</div>
+                        <div class="font-semibold">Mon - Fri: 9:00 AM — 6:00 PM</div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <a href="/reserve" class="inline-block bg-[#7c3aed] hover:bg-[#6931d6] px-4 py-2 rounded-full font-semibold">Reserve a Spot</a>
+                </div>
+            </div>
+
+            <!-- Right: Contact form (theme-matching, required asterisks) -->
+            <div class="rounded-xl p-6 sm:p-8 bg-gradient-to-br from-[#2a2a2a] to-[#151515] border border-[#292929] shadow-xl">
+                <h2 class="text-2xl font-bold mb-4">Send us a message</h2>
+                <p class="text-[#cfcfcf] mb-6">We'll reply within 1–2 business days.</p>
+
+                <form id="contactForm" class="space-y-4" autocomplete="off">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-[#e6e6e6]">
+                            Name <span class="text-red-500">*</span>
+                        </label>
+                        <input id="name" name="name" type="text" required
+                               class="mt-2 block w-full rounded-lg bg-[#0f0f0f] border border-[#2a2a2a] px-4 py-2 text-white placeholder:text-[#7b7b7b] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/50"
+                               placeholder="Your full name" />
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-[#e6e6e6]">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input id="email" name="email" type="email" required
+                               class="mt-2 block w-full rounded-lg bg-[#0f0f0f] border border-[#2a2a2a] px-4 py-2 text-white placeholder:text-[#7b7b7b] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/50"
+                               placeholder="you@example.com" />
+                    </div>
+
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-[#e6e6e6]">
+                            Subject
+                        </label>
+                        <input id="subject" name="subject" type="text"
+                               class="mt-2 block w-full rounded-lg bg-[#0f0f0f] border border-[#2a2a2a] px-4 py-2 text-white placeholder:text-[#7b7b7b] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/50"
+                               placeholder="Short subject (optional)" />
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-[#e6e6e6]">
+                            Message <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="message" name="message" rows="6" required
+                                  class="mt-2 block w-full rounded-lg bg-[#0f0f0f] border border-[#2a2a2a] px-4 py-3 text-white placeholder:text-[#7b7b7b] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]/50"
+                                  placeholder="Tell us how we can help..."></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <button type="submit" class="inline-flex items-center justify-center px-5 py-2 rounded-full bg-[#7c3aed] hover:bg-[#6931d6] transition font-semibold">
+                            Send Message
+                        </button>
+                        <p class="text-sm text-[#a9a9a9]">Fields marked <span class="text-red-500">*</span> are required</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer (Contact Us link updated to /contact) -->
+<footer class="text-center py-10 text-[#999] text-sm border-t border-[#333] mt-auto">
+    <div class="flex justify-center flex-wrap gap-6 mb-4">
+        <a href="/privacy" class="hover:text-white">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white">Terms of Service</a>
+        <a href="/contact" class="hover:text-white font-semibold">Contact Us</a>
+    </div>
+    <p>&copy; <span id="year"></span> Smart_Parking. All rights reserved.</p>
+</footer>
+
+<!-- Toast (in-page feedback after submit) -->
+<div id="toast" class="fixed bottom-6 right-6 bg-[#0f1720] border border-[#2a2a2a] text-white px-4 py-2 rounded shadow-lg hidden">
+    Message sent ✓
+</div>
+
+<!-- JS: mobile menu toggle + contact form behaviour -->
+<script>
+    // Mobile menu toggle (same as other pages)
+    (function () {
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburger = document.getElementById('hamburger');
+      const close = document.getElementById('close');
+
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.removeAttribute('data-cloak');
+      }
+
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            if (hamburger) hamburger.classList.add('hidden');
+            if (close) close.classList.remove('hidden');
+            mobileToggle.setAttribute('aria-expanded','true');
+          } else {
+            mobileMenu.classList.add('hidden');
+            if (hamburger) hamburger.classList.remove('hidden');
+            if (close) close.classList.add('hidden');
+            mobileToggle.setAttribute('aria-expanded','false');
+          }
+        });
+      }
+
+      // show current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+
+    // Contact form handling: clear fields, show alert & toast on submit
+    (function () {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const subject = document.getElementById('subject');
+      const message = document.getElementById('message');
+      const toast = document.getElementById('toast');
+
+      function showToast(text) {
+        toast.textContent = text;
+        toast.classList.remove('hidden');
+        toast.style.opacity = '1';
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.classList.add('hidden'), 300);
+        }, 2200);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // simple validation
+        if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+          alert('Please fill in the required fields (Name, Email, Message).');
+          return;
+        }
+
+        // basic email pattern
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value.trim())) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        // TODO: place fetch/ajax here to send to backend endpoint if desired.
+        // Simulate success:
+        name.value = '';
+        email.value = '';
+        subject.value = '';
+        message.value = '';
+
+        alert('Your message has been sent. Thank you!');
+        showToast('Message sent ✓');
+      });
+    })();
+</script>
+</body>
+</html>
