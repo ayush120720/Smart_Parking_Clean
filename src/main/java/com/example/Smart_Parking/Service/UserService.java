@@ -30,7 +30,7 @@ public class UserService {
 
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        user.setEmailVerified(false);
+        user.setEmailVerified(true);
         repo.save(user);
         return true;
     }
